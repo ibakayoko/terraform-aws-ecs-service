@@ -56,8 +56,13 @@ module "ecs_cluster" {
   
   service_volumes = [
     {
-      name = "data"
-    }
+        name      = "npdf"
+        host_path = "/mnt/efs/spanish/resources/npdf"
+      },
+      {
+        name      = "ngif"
+        host_path = "/mnt/efs/spanish/resources/ngif"
+      }
   ]
   
   ecs_cluster_id = "arn:aws:ecs:eu-west-2:151388205202:cluster/web-app"
