@@ -4,7 +4,6 @@ data "template_file" "service" {
   vars = {
     name = "${var.service_name}"
     image = "${var.service_image}"
-    command = "${jsonencode(var.service_command)}"
     port = "${var.service_port}"
     region = "${var.region}"
     log_group = "${aws_cloudwatch_log_group.service.name}"
@@ -13,11 +12,11 @@ data "template_file" "service" {
 
 resource "aws_ecs_task_definition" "service" {
   family = "${var.component}-${var.service_name}-${var.deployment_identifier}"
-  container_definitions = "${data.template_file.service.rendered}"
+  container_definitions = data.template_file.service.rendered
 
-  network_mode = "${var.service_task_network_mode}"
+  network_mode = var.service_task_network_mode
 
-  task_role_arn = "${var.service_role}"
+  task_role_arn = var.service_role
 
   dynamic "volume" {
     for_each = var.service_volumes
