@@ -30,7 +30,7 @@ variable "service_image" {
 }
 variable "service_command" {
   description = "The command to run to start the container."
-  type = "list"
+  type = list
   default = []
 }
 variable "service_port" {
@@ -68,7 +68,7 @@ variable "service_role" {
 }
 variable "service_volumes" {
   description = "A list of volumes to make available to the containers in the service."
-  type = "list"
+  type = list
   default = []
 }
 
@@ -79,7 +79,7 @@ variable "scheduling_strategy" {
 
 variable "placement_constraints" {
   description = "A list of placement constraints for the service."
-  type = "list"
+  type = list
   default = []
 }
 
